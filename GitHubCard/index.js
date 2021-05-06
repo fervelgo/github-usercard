@@ -74,7 +74,29 @@ function GitHubCardMaker ({profileInfo}) {
   const following = document.createElement('p');
   const bio = document.createElement('p');
   
+  cardImg.src = res.data.avatar_url;
+  cardInfo.classList.add('card-info');
+  name.classList.add('name')
+  name.textContent = res.data.name;
+  username.textContent= res.data.login;
+  username.classList.add('username');
+  location.textContent = res.data.location;
+  profileLink.textContent = res.data.url;
+  followers.textContent = 'Followers: ' + res.data.followers;
+  following.textContent = 'Following: ' + res.data.following;
+  bio.textContent = res.data.bio;
   
+  card.appendChild(cardImg);
+  card.appendChild(cardInfo);
+  cardInfo.appendChild(name);
+  cardInfo.appendChild(username);
+  cardInfo.appendChild(location);
+  cardInfo.appendChild(profile);
+  profile.appendChild(profileLink);
+  cardInfo.appendChild(followers);
+  cardInfo.appendChild(following);
+  cardInfo.appendChild(bio);
+
 }
 /*
   List of LS Instructors Github username's:
