@@ -1,8 +1,20 @@
+const { default: axios } = require("axios");
+
 /*
   STEP 1: using axios, send a GET request to the following URL
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
+axios
+.get('https://api.github.com/users/fervelgo')
+.then((res)=> {
+  const name = res.data;
+  console.log(name);
+  // card.appendChild.
+})
+.catch((err) => {
+  console.log('didnt work')
+});
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
@@ -33,7 +45,7 @@ const followersArray = [];
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
     Using DOM methods and properties, create and return the following markup:
-
+  
     <div class="card">
       <img src={image url of user} />
       <div class="card-info">
@@ -49,7 +61,21 @@ const followersArray = [];
       </div>
     </div>
 */
-
+function GitHubCardMaker ({profileInfo}) {
+  const card = document.createElement('div');
+  const cardImg = document.createElement('img');
+  const cardInfo = document.createElement('div');
+  const name = document.createElement('h3');
+  const username =document.createElement('p');
+  const location = document.createElement('p');
+  const profile = document.createElement('p');
+  const profileLink = document.createElement('a');
+  const followers = document.createElement('p');
+  const following = document.createElement('p');
+  const bio = document.createElement('p');
+  
+  
+}
 /*
   List of LS Instructors Github username's:
     tetondan
