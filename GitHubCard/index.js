@@ -8,12 +8,24 @@ const { default: axios } = require("axios");
 axios
 .get('https://api.github.com/users/fervelgo')
 .then((res)=> {
-  const name = res.data;
-  console.log(name);
-  // card.appendChild.
+  const dataArray = ({
+    imageURL: res.data.avatar_url,
+    nameData: res.data.name,
+    loginData: res.data.login,
+    locationData: res.data.location,
+    linkData: res.data.url,
+    followersData: res.data.followers,
+    followingData: res.data.following,
+    bioData: res.data.bio 
+  })
+
+  console.log(res.data.avatar_url)
+  const newCard = gitHubCardMaker(dataArray);
+  insertCard.appendChild(newCard);
 })
 .catch((err) => {
-  console.log('didnt work')
+  console.log(err)
+  debugger;
 });
 
 /*
@@ -61,7 +73,7 @@ const followersArray = [];
       </div>
     </div>
 */
-function GitHubCardMaker ({profileInfo}) {
+function gitHubCardMaker ({ imageURL, nameData, loginData, locationData, linkData, followersData, followingData, bioData  }) {
   const card = document.createElement('div');
   const cardImg = document.createElement('img');
   const cardInfo = document.createElement('div');
@@ -74,17 +86,18 @@ function GitHubCardMaker ({profileInfo}) {
   const following = document.createElement('p');
   const bio = document.createElement('p');
   
-  cardImg.src = res.data.avatar_url;
+  card.classList.add('card')
+  cardImg.src = imageURL;
   cardInfo.classList.add('card-info');
-  name.classList.add('name')
-  name.textContent = res.data.name;
-  username.textContent= res.data.login;
+  name.classList.add('.ame')
+  name.textContent = nameData;
+  username.textContent= loginData;
   username.classList.add('username');
-  location.textContent = res.data.location;
-  profileLink.textContent = res.data.url;
-  followers.textContent = 'Followers: ' + res.data.followers;
-  following.textContent = 'Following: ' + res.data.following;
-  bio.textContent = res.data.bio;
+  location.textContent = locationData;
+  profileLink.textContent = linkData;
+  followers.textContent = 'Followers: ' + toString(followersData);
+  following.textContent = 'Following: ' + toString(followingData);
+  bio.textContent = bioData
   
   card.appendChild(cardImg);
   card.appendChild(cardInfo);
@@ -97,7 +110,10 @@ function GitHubCardMaker ({profileInfo}) {
   cardInfo.appendChild(following);
   cardInfo.appendChild(bio);
 
+  return card
 }
+
+const insertCard = document.querySelector('.cards')
 /*
   List of LS Instructors Github username's:
     tetondan
